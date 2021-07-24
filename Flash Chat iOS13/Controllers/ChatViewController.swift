@@ -13,7 +13,7 @@ class ChatViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var messageTextfield: UITextField!
-    //teste
+    //teste232323232
     var messages: [Message] = [
         Message(sender: "1@2", body: "Hey"),
         Message(sender: "1@2", body: "Hello!"),
