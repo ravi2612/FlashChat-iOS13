@@ -36,7 +36,9 @@ class ChatViewController: UIViewController {
     func loadMessages() {
         
         
-        db.collection(K.FStore.collectionName).addSnapshotListener { QuerySnapshot, error in
+        db.collection(K.FStore.collectionName)
+            .order(by: K.FStore.dateField)
+            .addSnapshotListener { QuerySnapshot, error in
             
             self.messages = [ ]
             
@@ -47,7 +49,7 @@ class ChatViewController: UIViewController {
                     for doc in snapshotDocuments {
                         let data = doc.data()
                         if let messageSender = data[K.FStore.senderField] as? String, let messageBody = data[K.FStore.bodyField] as? String {
-                            let newMessage = Message(sender: messageSender body: messageBody)
+                            let newMessage = Message(sender: messageSender, body: messageBody)
                             self.messages.append(newMessage)
                             
                             
@@ -66,7 +68,8 @@ class ChatViewController: UIViewController {
         if let messageBody = messageTextfield.text, let messageSender = Auth.auth().currentUser?.email {
             db.collection(K.FStore.collectionName).addDocument(data: [
                 K.FStore.senderField: messageSender,
-                K.FStore.bodyField: messageBody
+                K.FStore.bodyField: messageBody,
+                K.FStore.dateField:Date().timeIntervalSince1970
             ]) { (error) in
                 if let e = error {
                     print("There was an issue saving data to firestore, \(e)")
