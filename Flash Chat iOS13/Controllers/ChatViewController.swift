@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-import CoreData
+
 
 class ChatViewController: UIViewController {
 
@@ -73,7 +73,7 @@ class ChatViewController: UIViewController {
             db.collection(K.FStore.collectionName).addDocument(data: [
                 K.FStore.senderField: messageSender,
                 K.FStore.bodyField: messageBody,
-                K.FStore.dateField:Date().timeIntervalSince1970
+                K.FStore.dateField: Date().timeIntervalSince1970
             ]) { (error) in
                 if let e = error {
                     print("There was an issue saving data to firestore, \(e)")
@@ -115,7 +115,7 @@ extension ChatViewController: UITableViewDataSource {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: K.cellIdentifier, for: indexPath)
         as! MessageCell
-        cell.label?.text = messages[indexPath.row].body
+        cell.label.text = messages[indexPath.row].body
         
         //This is a message from current user
         if message.sender == Auth.auth().currentUser?.email {
