@@ -115,7 +115,7 @@ extension ChatViewController: UITableViewDataSource {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: K.cellIdentifier, for: indexPath)
         as! MessageCell
-        cell.label.text = messages[indexPath.row].body
+        cell.label.text = message.body
         
         //This is a message from current user
         if message.sender == Auth.auth().currentUser?.email {
