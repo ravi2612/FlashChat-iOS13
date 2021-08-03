@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 
 class RegisterViewController: UIViewController {
-
+    
     @IBOutlet weak var emailTextfield: UITextField!
     @IBOutlet weak var passwordTextfield: UITextField!
     
@@ -22,7 +22,7 @@ class RegisterViewController: UIViewController {
                 if let e = error {
                     print(e.localizedDescription)
                 } else {
-                  //Navigate to the ChatViewController
+                    //Navigate to the ChatViewController
                     self.performSegue(withIdentifier: K.registerSegue, sender: self)
                 }
             }

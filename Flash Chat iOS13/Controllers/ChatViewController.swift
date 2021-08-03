@@ -12,7 +12,7 @@ import Firebase
 
 
 class ChatViewController: UIViewController {
-
+    
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var messageTextfield: UITextField!
     
@@ -41,31 +41,31 @@ class ChatViewController: UIViewController {
         db.collection(K.FStore.collectionName)
             .order(by: K.FStore.dateField)
             .addSnapshotListener { QuerySnapshot, error in
-            
-            self.messages = [ ]
-            
-            if let e = error {
-                print("There was an issueretrieving data from Firestore. \(e)")
-            } else {
-                if let snapshotDocuments = QuerySnapshot?.documents {
-                    for doc in snapshotDocuments {
-                        let data = doc.data()
-                        if let messageSender = data[K.FStore.senderField] as? String, let messageBody = data[K.FStore.bodyField] as? String {
-                            let newMessage = Message(sender: messageSender, body: messageBody)
-                            self.messages.append(newMessage)
-                            
-                            
-                            DispatchQueue.main.async {
-                                self.tableView.reloadData()
-                                let indexPath = IndexPath(row: self.messages.count - 1, section: 0)
-                                self.tableView.scrollToRow(at: indexPath, at: .top , animated: false)
+                
+                self.messages = [ ]
+                
+                if let e = error {
+                    print("There was an issueretrieving data from Firestore. \(e)")
+                } else {
+                    if let snapshotDocuments = QuerySnapshot?.documents {
+                        for doc in snapshotDocuments {
+                            let data = doc.data()
+                            if let messageSender = data[K.FStore.senderField] as? String, let messageBody = data[K.FStore.bodyField] as? String {
+                                let newMessage = Message(sender: messageSender, body: messageBody)
+                                self.messages.append(newMessage)
+                                
+                                
+                                DispatchQueue.main.async {
+                                    self.tableView.reloadData()
+                                    let indexPath = IndexPath(row: self.messages.count - 1, section: 0)
+                                    self.tableView.scrollToRow(at: indexPath, at: .top , animated: false)
+                                }
+                                
                             }
-                            
                         }
                     }
                 }
             }
-        }
     }
     
     @IBAction func sendPressed(_ sender: UIButton) {
@@ -86,21 +86,21 @@ class ChatViewController: UIViewController {
                 }
             }
         }
-            
+        
     }
     
     @IBAction func logOutPressed(_ sender: UIBarButtonItem) {
         
-    do {
-        try Auth.auth().signOut()
+        do {
+            try Auth.auth().signOut()
+            
+            navigationController?.popViewController(animated: true)
+            
+            
+        } catch let signOutError as NSError {
+            print("Error signing out: %@", signOutError)
+        }
         
-        navigationController?.popViewController(animated: true)
-        
-        
-    } catch let signOutError as NSError {
-      print("Error signing out: %@", signOutError)
-    }
-      
     }
     
 }
@@ -114,7 +114,7 @@ extension ChatViewController: UITableViewDataSource {
         let message = messages[indexPath.row]
         
         let cell = tableView.dequeueReusableCell(withIdentifier: K.cellIdentifier, for: indexPath)
-        as! MessageCell
+            as! MessageCell
         cell.label.text = message.body
         
         //This is a message from current user
