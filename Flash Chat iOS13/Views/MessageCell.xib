@@ -14,7 +14,7 @@
         <tableViewCell userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ReusableCell" rowHeight="68" id="KGk-i7-Jjw" customClass="MessageCell" customModule="Flash_Chat_iOS13" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="397" height="68"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM" customClass="MessageCell" customModule="Flash_Chat_iOS13" customModuleProvider="target">
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
                 <rect key="frame" x="0.0" y="0.0" width="397" height="68"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
@@ -28,7 +28,7 @@
                                     <constraint firstAttribute="width" constant="40" id="Viz-Sw-a5z"/>
                                 </constraints>
                             </imageView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cU6-Pm-Fwt" customClass="MessageCell" customModule="Flash_Chat_iOS13" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cU6-Pm-Fwt">
                                 <rect key="frame" x="60" y="0.0" width="257" height="48"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oi3-2e-4Yh">
@@ -62,15 +62,13 @@
                     <constraint firstItem="t0G-tl-efD" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="mib-9e-MS3"/>
                     <constraint firstAttribute="bottom" secondItem="t0G-tl-efD" secondAttribute="bottom" constant="10" id="x6D-pg-Cdj"/>
                 </constraints>
-                <connections>
-                    <outlet property="rightImageView" destination="kqy-mJ-qWu" id="JB8-ib-Jyk"/>
-                </connections>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="label" destination="oi3-2e-4Yh" id="JRq-7h-V8b"/>
                 <outlet property="leftImageView" destination="Yel-6p-rNU" id="ffo-Hc-vpJ"/>
                 <outlet property="messageBubble" destination="cU6-Pm-Fwt" id="5ve-7U-Wzc"/>
+                <outlet property="rightImageView" destination="kqy-mJ-qWu" id="u6J-6A-R0E"/>
             </connections>
             <point key="canvasLocation" x="-351" y="-202"/>
         </tableViewCell>
